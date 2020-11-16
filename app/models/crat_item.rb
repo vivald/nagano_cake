@@ -1,2 +1,0 @@
-class CratItem < ApplicationRecord
-end

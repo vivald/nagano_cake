@@ -13,6 +13,7 @@ class DeviseCreateAdmins < ActiveRecord::Migration[5.2]
 
       ## Rememberable
       t.datetime :remember_created_at
+      
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false
@@ -32,7 +33,7 @@ class DeviseCreateAdmins < ActiveRecord::Migration[5.2]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
+　
       t.timestamps null: false
     end
 
