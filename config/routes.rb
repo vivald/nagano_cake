@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admins do
+    resources :goods
+  end
   root to: 'admins/homes#top'
 
   devise_for :admins, controllers: {
