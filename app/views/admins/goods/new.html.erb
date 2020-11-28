@@ -3,11 +3,11 @@
   <!--以下０７ viewファイル（_common）より引用-->
   <div class="row">
     <div class="col-xs-8 col-xs-offset-2">
-      <%= form_with model:@goods, local:true do |f| %>
-        <% if @goods.errors.any? %>
-         <h2><%= @goods.errors.count %>error prohibited this goods from being created:</h2>
+      <%= form_with model:@items, local:true do |f| %>
+        <% if @items.errors.any? %>
+         <h2><%= @items.errors.count %>error prohibited this goods from being created:</h2>
           <ul>
-            <% @goods.errors.full_messages.each do |message| %>
+            <% @items.errors.full_messages.each do |message| %>
               <li><%= message %></li>
             <% end %>
           </ul>
@@ -18,27 +18,46 @@
           <tbody>
             <tr>
               <th scope="row">商品画像</th>
-              <td>画像ファイル</td>
+              <td><%= f.attachment_field :image %></td>
             </tr>
             <tr>
               <th scope="row">商品名</th>
-              <td>商品名フィールド</td>
+              <td><%= f.text_field :name %></td>
             </tr>
             <tr>
               <th scope="row">商品説明</th>
-              <td>商品説明エリア</td>
+              <td><%= f.text_area :introduction %></td>
             </tr>
             <tr>
               <th scope="row">ジャンル</th>
-              <td>ジャンル選択</td>
+              <td>
+                <select name=”month”>
+                  <option value=”non”>-- 選択してください --</option>
+                  <option value=”jan”>1月</option>
+                  <option value=”feb”>2月</option>
+                  <option value=”mar”>3月</option>
+                  <option value=”apr”>4月</option>
+                  <option value=”may”>5月</option>
+                  <option value=”jun”>6月</option>
+                  <option value=”jul”>7月</option>
+                  <option value=”aug”>8月</option>
+                  <option value=”sep”>9月</option>
+                  <option value=”oct”>10月</option>
+                  <option value=”nov”>11月</option>
+                  <option value=”dec”>12月</option>
+                </select>
+              </td>
             </tr>
             <tr>
               <th scope="row">税抜価格</th>
-              <td>税抜価格フィールド</td>
+              <td><%= f.text_field :price %>円</td>
             </tr>
             <tr>
               <th scope="row">販売ステータス</th>
-              <td>販売ステータス</td>
+              <td>
+                <%= f.radio_button :is_active, :true %>販売中
+                <%= f.radio_button :is_active, :false %>販売停止中
+              </td>
             </tr>
           </tbody>
         </table>

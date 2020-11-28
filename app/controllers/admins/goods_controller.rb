@@ -3,11 +3,11 @@ class Admins::GoodsController < ApplicationController
   end
 
   def new
-    @items = Item.new(item_params)
+    @items = Item.new
   end
 
   def create
-    @items = Item.new(item_params)
+    @items = Item.new
     if @items.save
       flash[:notice] ="successfully Created"
       redirect_to admins_good_path(@item.id)
@@ -26,9 +26,5 @@ class Admins::GoodsController < ApplicationController
   def update
   end
 
-  private
 
-  def item_params
-    params.require(:item).permit(:genre_id, :name, :image_id, :introduction, :price, :is_actice)
-  end
 end

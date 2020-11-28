@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     resources :goods
   end
   root to: 'admins/homes#top'
+  
+  resources :items, only:[:index, :show]
 
   devise_for :admins, controllers: {
   sessions: 'admins/sessions'
