@@ -6,8 +6,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-     @items = Item.new(item_params)
-    if @items.save
+     @item = Item.new(item_params)
+    if @item.save
       flash[:notice] ="successfully Created"
       redirect_to admins_good_path(@item.id)
     else
@@ -15,7 +15,10 @@ class ItemsController < ApplicationController
     end
   end
 
+
+  private
+  
   def item_params
-    params.permit(:name, :introduction, :image, :genre_id, :price, :is_active)
+    params.require(:item).permit(:name, :introduction, :image, :genre_id, :price, :is_active)
   end
 end
