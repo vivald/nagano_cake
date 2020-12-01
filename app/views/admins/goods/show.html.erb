@@ -19,17 +19,16 @@
             </tr>
             <tr>
               <th scope="row">ジャンル</th>
-              <td><%</td>
+              <td><%= @item.genre_id, %></td>
             </tr>
             <tr>
-              <th scope="row">税抜価格</th>
-              <td><%= f.text_field :price %>円</td>
+              <th scope="row">税込価格<br>（税抜価格）</th>
+              <td><%= @item.price %>円</td>
             </tr>
             <tr>
               <th scope="row">販売ステータス</th>
               <td>
-                <%= f.radio_button :is_active, :true %>販売中
-                <%= f.radio_button :is_active, :false %>販売停止中
+                <%= @item.is_active %>
               </td>
             </tr>
           </tbody>
