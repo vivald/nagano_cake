@@ -1,2 +1,39 @@
-<h1>Admins::Goods#show</h1>
-<p>Find me in app/views/admins/goods/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4">
+      <h2>商品詳細</h2>
+      <%= attachment_image_tag @item, :image, :fill, 70, 70, format: 'jpeg', class: " pull-left profile-img", fallback: "no_image.jpg", size:'100x100' %>
+    </div>
+    <div class="col-xs-8">
+      <table class="table">
+          <thead>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">商品名</th>
+              <td><%= @item.name %></td>
+            </tr>
+            <tr>
+              <th scope="row">商品説明</th>
+              <td><%= @item.introduction %></td>
+            </tr>
+            <tr>
+              <th scope="row">ジャンル</th>
+              <td><%</td>
+            </tr>
+            <tr>
+              <th scope="row">税抜価格</th>
+              <td><%= f.text_field :price %>円</td>
+            </tr>
+            <tr>
+              <th scope="row">販売ステータス</th>
+              <td>
+                <%= f.radio_button :is_active, :true %>販売中
+                <%= f.radio_button :is_active, :false %>販売停止中
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
