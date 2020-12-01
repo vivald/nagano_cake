@@ -3,7 +3,7 @@ class Admins::GoodsController < ApplicationController
   end
 
   def new
-    @item = Item.new(item_params)
+    @item = Item.new
   end
 
   def create
@@ -29,7 +29,7 @@ class Admins::GoodsController < ApplicationController
   private
 
   def item_params
-    params.permit(:name, :introduction, :image, :genre_id, :price, :is_active)
+    params.require(:item).permit(:name, :introduction, :image, :genre_id, :price, :is_active)
   end
 
 
