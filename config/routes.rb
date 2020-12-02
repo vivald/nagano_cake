@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :admins do
+    resources :end_users, only:[:index, :show, :edit, :update]
     resources :goods
     resources :genres, only:[:index, :create, :edit, :update]
   end
