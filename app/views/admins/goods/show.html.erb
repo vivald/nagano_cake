@@ -19,7 +19,7 @@
             </tr>
             <tr>
               <th scope="row">ジャンル</th>
-              <td><%= @genre.name %></td>
+              <td><%= @genre %></td>
             </tr>
             <tr>
               <th scope="row">税込価格<br>（税抜価格）</th>
@@ -38,7 +38,7 @@
             <tr>
               <th></th>
               <td>
-                <%= link_to "編集する", edit_admins_good_path %>
+                <%= link_to "編集する", edit_admins_good_path(@item) %>
               </td>
             </tr>
           </tbody>

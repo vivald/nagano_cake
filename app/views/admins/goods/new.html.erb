@@ -34,10 +34,8 @@
               <th scope="row">ジャンル</th>
               <td>
                 <div class="form-group">
-
-                  <%= f.select :genre_id, {'ケーキ': 1, 'お菓子': 2}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+                  <%= f.select :genre_id, Genre.all.map { |genre| [genre.name, genre.id] },  { include_blank: '選択してください'}, { class: 'form-control' , required: true }  %>
                 </div>
-
               </td>
             </tr>
             <tr>
