@@ -12,7 +12,11 @@
 	   <% @customers.each do |custmers| %>
   		<tr>
   			<td><%= @customers.id %></td>
-  			<td><%= @name %></td>
+  			<td>
+  			  <%= link_to admins_end_user_path do %>
+  			    <%= @name %>
+  			  <% end %>
+  			</td>
   			<td><%= @customers.address %></td>
   			<td><%= @customers.is_deleted %></td>
   		</tr>
