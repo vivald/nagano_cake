@@ -18,7 +18,9 @@ class Admins::GoodsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @genre = Genre.find(params[:id])
+    @genre = @item.genre.name
+    # 右辺の@item.genreの部分はitemがgenreに紐づいているデータを呼び出している。@itemはitemの一つのデータ
+    # genre.nameでgenreモデルからnameを指定して呼び出している。
     @addTax = @item.price * 1.10
   end
 
@@ -27,6 +29,13 @@ class Admins::GoodsController < ApplicationController
   end
 
   def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      flash[:notice]= "successfully Updated"
+      redirect_to admins_good_path(@item.id)
+    else
+      render :edit
+    end
   end
 
   private
