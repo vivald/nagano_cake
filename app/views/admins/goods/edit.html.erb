@@ -1,2 +1,59 @@
-<h1>Admins::Goods#edit</h1>
-<p>Find me in app/views/admins/goods/edit.html.erb</p>
+<div class="container">
+  <h3 class="pb20">商品新規登録</h3>
+  <!--以下０７ viewファイル（_common）より引用-->
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <%= form_with model:@item, local:true do |f| %>
+        <% if @item.errors.any? %>
+         <h2><%= @item.errors.count %>error prohibited this goods from being created:</h2>
+          <ul>
+            <% @item.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+        <table class="table">
+          <thead>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">商品画像</th>
+              <td><%= f.attachment_field :image %></td>
+            </tr>
+            <tr>
+              <th scope="row">商品名</th>
+              <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+              <th scope="row">商品説明</th>
+              <td><%= f.text_area :introduction %></td>
+            </tr>
+            <tr>
+              <th scope="row">ジャンル</th>
+              <td>
+                <div class="form-group">
+
+                  <%= f.select :genre_id, {'ケーキ': 1, 'お菓子': 2}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+                </div>
+
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">税抜価格</th>
+              <td><%= f.text_field :price %>円</td>
+            </tr>
+            <tr>
+              <th scope="row">販売ステータス</th>
+              <td>
+                <%= f.radio_button :is_active, :true %>販売中
+                <%= f.radio_button :is_active, :false %>販売停止中
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <%= f.submit "新規登録" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
