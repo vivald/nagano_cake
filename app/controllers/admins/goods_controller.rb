@@ -18,9 +18,12 @@ class Admins::GoodsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @genre = Genre.find(params[:id])
+    @addTax = @item.price * 1.10
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def update

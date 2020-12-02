@@ -2,7 +2,9 @@
 
 <div class="container">
   <p>商品一覧</p>
-  <a href="new" class="btn btn--circle btn--circle-c btn--shadow"><i class="fas fa-arrow-up">＋</i></a>
+  <%= link_to(new_admins_good_path, {class: "btn btn--circle btn--circle-c btn--shadow"}) do %>
+    <i class="fas fa-arrow-up">＋</i></a>
+  <% end %>
   <table class="table">
   	<thead>
   		<tr class ="active">
