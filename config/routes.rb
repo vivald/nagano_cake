@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :customers, only:[:index, :show, :edit, :update]
     resources :goods
     resources :genres, only:[:index, :create, :edit, :update]
+    resources :orders, only:[:index, :edit]
     get 'homes/top' => 'homes#top'
   end
   
