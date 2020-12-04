@@ -1,7 +1,8 @@
-class Admins::EndUsersController < ApplicationController
+class Admins::CustomersController < ApplicationController
+  layout 'admins'
+  
   def index
     @customers = Customer.all
-    @name = "customers.last_name" + "customers.first_name"
   end
 
   def show

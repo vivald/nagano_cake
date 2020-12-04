@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'admins/homes#top'
   
   namespace :admins do
-    resources :end_users, only:[:index, :show, :edit, :update]
+    resources :customers, only:[:index, :show, :edit, :update]
     resources :goods
     resources :genres, only:[:index, :create, :edit, :update]
     get 'homes/top' => 'homes#top'
