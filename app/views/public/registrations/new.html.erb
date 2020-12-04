@@ -4,22 +4,23 @@
       <h2>新規会員登録</h2>
       <br>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <!--%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>-->
         <%= render "public/shared/error_messages", resource: resource %>
         <table class="table">
         	<tbody>
         		<tr>
         			<td>名前</td>
         			<td>(姓)</td>
-        			<td><%= f.text_field :last_name, autofocus: true %></td>
+        			<td><%= f.text_field :last_name, autofocus: true, class: "new_inform" %></td>
         			<td>(名)</td>
-        			<td><%= f.text_field :last_name %></td>
+        			<td><%= f.text_field :first_name, class: "new_inform" %></td>
         		</tr>
         		<tr>
         			<td>フリガナ</td>
         			<td>(セイ)</td>
-        			<td><%= f.text_field :last_name %></td>
+        			<td><%= f.text_field :last_name_kana, class: "new_inform" %></td>
         			<td>(メイ)</td>
-        			<td><%= f.text_field :last_name %></td>
+        			<td><%= f.text_field :first_name_kana, class: "new_inform" %></td>
         		</tr>
         		<tr>
         			<td>メールアドレス</td>
@@ -31,28 +32,28 @@
         		<tr>
         			<td>郵便番号（ハイフンなし）</td>
         			<td></td>
-        			<td><%= f.text_field :postal_code %></td>
+        			<td><%= f.text_field :postal_code, class: "new_inform" %></td>
         			<td></td>
         			<td></td>
         		</tr>
         		<tr>
         			<td>住所</td>
         			<td></td>
-        			<td><%= f.text_field :address %></td>
+        			<td><%= f.text_field :address, class: "new_inform" %></td>
         			<td></td>
         			<td></td>
         		</tr>
         		<tr>
         			<td>電話番号（ハイフンなし）</td>
         			<td></td>
-        			<td><%= f.text_field :telephone_number %></td>
+        			<td><%= f.text_field :telephone_number, class: "new_inform" %></td>
         			<td></td>
         			<td></td>
         		</tr>
         		<tr>
         			<td>パスワード（６文字以上）</td>
         			<td></td>
-        			<td><%= f.password_field :password, autocomplete: "new-password" %></td>
+        			<td><%= f.password_field :password %></td>
         			<td></td>
         			<td></td>
         		</tr>
