@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>マイページ</h2>
+            <p>登録情報</p>
+            <%= link_to "編集する", edit_public_customer_path(@customer)%>
+        </div>
+    </div>
+</div>
+<table class="table table-bordered">
+	<thead>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="active">氏名</td>
+			<td><%= @customer.last_name %>  <%= @customer.first_name %></td>
+		</tr>
+		<tr>
+			<td class="active">カナ</td>
+			<td><%= @customer. last_name_kana%>  <%= @customer. first_name_kana%></td>
+		</tr>
+		<tr>
+			<td class="active">郵便番号</td>
+			<td><%= @customer.postal_code %></td>
+		</tr>
+		<tr>
+			<td class="active">住所</td>
+			<td><%= @customer.address %></td>
+		</tr>
+		<tr>
+			<td class="active">電話番号</td>
+			<td><%= @customer.telephone_number %></td>
+		</tr>
+		<tr>
+			<td class="active">メールアドレス</td>
+			<td><%= @customer.email %></td>
+		</tr>
+	</tbody>
+</table>
+
+<p>配送先</p>
+<%= link_to "一覧を見る", public_delivery_statuses_path(current_customer.id) %>
+<p>注文履歴</p>
+<%= link_to "一覧を見る", public_orders_path(current_customer.id) %>
+
+
+
+
+
+
+<!--下の記述は商品一覧のviewページに貼る-->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>商品一覧（全<%= @goodsNumber %>件）</h1><br>
+            <% @items.each do |item|%>
+                <%= attachment_image_tag item, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size:'150x150' %><br></td>
+                <%= item.name %><br>
+                <%= item.price %><br>
+            <% end %>
+        </div>
+    </div>
+</div>
