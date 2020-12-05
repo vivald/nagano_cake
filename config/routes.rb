@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   
-  root to: 'admins/homes#top'
+
+  root to: 'admin/homes#top'
   
-  namespace :admins do
+  namespace :admin do
     resources :customers, only:[:index, :show, :edit, :update]
-    resources :goods
+    resources :items
     resources :genres, only:[:index, :create, :edit, :update]
     resources :orders, only:[:index, :edit]
     get 'homes/top' => 'homes#top'
@@ -14,9 +15,8 @@ Rails.application.routes.draw do
     resources :customers, only:[:show, :edit, :update]
     resources :delivery_statuses, only:[:index, :edit, :create, :update, :destroy]
     resources :orders, only:[:new, :create, :index, :show, :update]
+    resources :items, only:[:index, :show]
   end
-  
-  resources :items, only:[:index, :create, :show]
 
   devise_for :admin, controllers: {
   sessions: 'admin/sessions'
