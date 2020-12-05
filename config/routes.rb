@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+
   root to: 'admin/homes#top'
   
   namespace :admin do
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
     resources :customers, only:[:show, :edit, :update]
     resources :delivery_statuses, only:[:index, :edit, :create, :update, :destroy]
     resources :orders, only:[:new, :create, :index, :show, :update]
-    resources :items, only:[:index, :create, :show]
+    resources :items, only:[:index, :show]
   end
 
   devise_for :admin, controllers: {

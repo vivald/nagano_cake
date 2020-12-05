@@ -16,8 +16,8 @@
         		<tr>
         			<td><%= order.created_at %></td>
         			<td><%= order.customer.last_name + order.customer.first_name %></td>
-        			<td><%= order. %></td>
-        			<td><%=  %></td>
+        			<td><%= @orderAmount.customer %></td>
+        			<td><%= order.status %></td>
         	</tbody>
       	<% end %>
       </table>

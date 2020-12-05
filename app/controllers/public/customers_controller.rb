@@ -1,7 +1,7 @@
 class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
-    @goodsNumber = Item.count
+    @goodsAmount = Item.count
     @items = Item.all
   end
 
