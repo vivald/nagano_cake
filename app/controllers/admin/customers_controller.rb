@@ -1,5 +1,5 @@
 class Admin::CustomersController < ApplicationController
-  layout 'admins'
+  layout 'admin'
 
   def index
     @customers = Customer.all
