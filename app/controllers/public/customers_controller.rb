@@ -1,4 +1,5 @@
 class Public::CustomersController < ApplicationController
+  layout 'public'
   def show
     @customer = Customer.find(params[:id])
     @goodsAmount = Item.count

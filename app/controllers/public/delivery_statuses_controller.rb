@@ -1,4 +1,6 @@
 class Public::DeliveryStatusesController < ApplicationController
+  layout 'public'
+  
   def index
     @customer = current_customer
   end

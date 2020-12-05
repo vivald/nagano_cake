@@ -49,15 +49,3 @@
 
 
 <!--下の記述は商品一覧のviewページに貼る-->
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <h1>商品一覧（全<%= @goodsAmount %>件）</h1><br>
-            <% @items.each do |item|%>
-                <%= attachment_image_tag item, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size:'150x150' %><br></td>
-                <%= item.name %><br>
-                <%= item.price %><br>
-            <% end %>
-        </div>
-    </div>
-</div>

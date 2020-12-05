@@ -1,4 +1,6 @@
 class Admin::ItemsController < ApplicationController
+  layout 'admin'
+  
   def index
   end
 
