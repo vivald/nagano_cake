@@ -3,6 +3,7 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @customer = current_customer
+    @item = cart_items.items
     @cartItems = @customer.cart_items.all
   end
 

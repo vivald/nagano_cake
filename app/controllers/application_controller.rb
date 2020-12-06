@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
   end
   # サインイン後の挙動はprotected の上に書く
   # 引数はresource
+  
+  protect_from_forgery with: :exception
+
+  helper_method :current_cart
+
   protected
 
     def configure_permitted_parameters

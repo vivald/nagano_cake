@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     resources :orders, only:[:new, :create, :index, :show, :update]
     resources :items, only:[:index, :show]
     resources :cart_items
+    # post '/add_item' => 'carts#add_item'
+    # post '/update_item' => 'carts#update_item'
+    # delete '/delete_item' => 'carts#delete_item'
   end
   
   devise_for :admin, controllers: {
