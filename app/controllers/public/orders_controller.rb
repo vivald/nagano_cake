@@ -1,8 +1,9 @@
 class Public::OrdersController < ApplicationController
   layout 'public'
-  
+
   def new
     @customer = current_customer
+    @order = current_customer.orders
   end
 
   def complete
@@ -14,4 +15,5 @@ class Public::OrdersController < ApplicationController
 
   def show
   end
+
 end
