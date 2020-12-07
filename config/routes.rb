@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  
+
   root to: 'admin/homes#top'
-  
+
   namespace :admin do
     resources :customers, only:[:index, :show, :edit, :update]
     resources :items
@@ -9,22 +9,25 @@ Rails.application.routes.draw do
     resources :orders, only:[:index, :edit]
     get 'homes/top' => 'homes#top'
   end
-  
   namespace :public do
     resources :customers, only:[:show, :edit, :update]
     resources :delivery_statuses, only:[:index, :edit, :create, :update, :destroy]
     resources :orders, only:[:new, :create, :index, :show, :update]
     resources :items, only:[:index, :show]
-    resources :cart_items
+    resources :cart_items do
+      collection do
+        delete 'destroy_all'
+      end
+  end
     # post '/add_item' => 'carts#add_item'
     # post '/update_item' => 'carts#update_item'
     # delete '/delete_item' => 'carts#delete_item'
   end
-  
+
   devise_for :admin, controllers: {
   sessions: 'admin/sessions'
 }
-  
+
   devise_for :customers, controllers: {
     sessions: 'public/sessions',
     registrations: 'public/registrations'
