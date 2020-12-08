@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'addresses/index'
+    get 'addresses/edit'
+  end
   root to: 'admin/homes#top'
 
   namespace :admin do
@@ -11,7 +15,7 @@ Rails.application.routes.draw do
   end
   namespace :public do
     resources :customers, only:[:show, :edit, :update]
-    resources :delivery_statuses, only:[:index, :edit, :create, :update, :destroy]
+    resources :addresses, only:[:index, :edit, :create, :update, :destroy]
     resources :orders, only:[:new, :create, :index, :show, :update]
     resources :items, only:[:index, :show]
     resources :cart_items do

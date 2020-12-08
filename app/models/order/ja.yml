@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      order: 注文情報
+    attributes:
+      order:
+        payment_method: 支払い方法
+  enums:
+    order:
+      payment_method:
+        credit card:クレジットカード
+      　bank transfer:銀行振込
