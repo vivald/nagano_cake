@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   namespace :public do
     resources :customers, only:[:show, :edit, :update]
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
-    resources :orders, only:[:new, :create, :index, :show, :update]
+    resources :orders, only:[:new, :index, :show, :update]
+    post 'orders' => 'orders#confirm'
+    get 'orders/confirm' => 'orders#confirm'
     resources :items, only:[:index, :show]
     resources :cart_items do
       collection do

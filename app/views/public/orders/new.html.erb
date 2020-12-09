@@ -1,21 +1,54 @@
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-10">
       <h2>注文情報入力</h2>
-      <%= form_with model:Order, url: public_orders_path, local:true do |f| %>
-
-      <h3>支払い方法</h3>
-        <div><%= f.radio_button :payment_method, 0 %> クレジットカード</div>
-        <div><%= f.radio_button :payment_method, 1 %> 銀行振込</div>
-      <h3>お届け先</h3>
+      <%= form_with model:@order, url: public_orders_path, local:true do |f| %>
+        <h3>支払い方法</h3>
         <div>
-          <%= f.radio_button :address, current_customer %>
-          <%= @order.postal_code %>
-          <!--%= f.label :address, {value: :current_customer.order.address, style: "display: inline-block;"} %>-->
+          <%= f.radio_button :payment_method, :"クレジットカード", checked: "checked" %>
+          <%= f.label :payment_method, 'クレジットカード' %>
         </div>
-        <div></div>
-      <% end %>
-
+        <div>
+          <%= f.radio_button :payment_method, :"銀行振込" %>
+          <%= f.label :payment_method, '銀行振込' %>
+        </div>
+        <h3>お届け先</h3>
+        <div><%= f.radio_button :address_option, 0 %>ご自身の住所</div>
+        <div>〒<%= @customer.postal_code %> <%= @customer.address %></div>
+        <div><%= @customer.last_name + @customer.first_name %></div>
+        <br>
+        <div><%= f.radio_button :address_option, 1 %>登録済み住所から選択</div>
+        <div><%= f.select :address, Address.all.map { |address| ["〒" + address.postal_code + "   " + address.address + "   " + address.name] } %></div>
+        <br>
+        <div><%= f.radio_button :address_option, 2 %>新しいお届け先</div>
+        <br>
+        <div>
+          <%= form_with model:@order, url: public_orders_path, local:true do |f| %>
+    	      <table class="table">
+    					<thead>
+    					</thead>
+    					<tbody>
+    						<tr>
+    							<td>郵便番号（ハイフンなし）</td>
+    							<td><%= f.text_field :postal_code %></td>
+    						</tr>
+    						<tr>
+    							<td>住所</td>
+    							<td><%= f.text_field :address %></td>
+    						</tr>
+    						<tr>
+    							<td>宛名</td>
+    							<td><%= f.text_field :name %></td>
+    						</tr>
+    					</tbody>
+    				</table>
+    			<% end %>
+          <%= f.submit "確認画面へ進む" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
