@@ -26,29 +26,27 @@
         <div><%= f.radio_button :address_option, 2 %>新しいお届け先</div>
         <br>
         <div>
-          <%= form_with model:@order, url: public_orders_path, local:true do |f| %>
-    	      <table class="table">
-    					<thead>
-    					</thead>
-    					<tbody>
-    						<tr>
-    							<td>郵便番号（ハイフンなし）</td>
-    							<td><%= f.text_field :postal_code %></td>
-    						</tr>
-    						<tr>
-    							<td>住所</td>
-    							<td><%= f.text_field :address %></td>
-    						</tr>
-    						<tr>
-    							<td>宛名</td>
-    							<td><%= f.text_field :name %></td>
-    						</tr>
-    					</tbody>
-    				</table>
-    			<% end %>
+  	      <table class="table">
+  					<thead>
+  					</thead>
+  					<tbody>
+  						<tr>
+  							<td>郵便番号（ハイフンなし）</td>
+  							<td><%= f.text_field :postal_code %></td>
+  						</tr>
+  						<tr>
+  							<td>住所</td>
+  							<td><%= f.text_field :address %></td>
+  						</tr>
+  						<tr>
+  							<td>宛名</td>
+  							<td><%= f.text_field :name %></td>
+  						</tr>
+  					</tbody>
+  				</table>
           <%= f.submit "確認画面へ進む" %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

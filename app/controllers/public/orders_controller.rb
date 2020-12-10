@@ -9,19 +9,17 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @customer = current_customer
-    if params[:address_option] == "0"
+    if params[:order][:address_option] == "0"
       order = Order.new(order_params)
       order.customer_id = current_customer.id
-      redirect_to public_items_path
-    elsif params[:address_option] == "1"
+      @cart_items = @customer.cart_items.all
+      @add_tax = 1.1
+    elsif params[:order][:address_option] == "1"
       order = Order.new(another_order_params)
-      binding.pry
       order.customer_id = current_customer.id
-      redirect_to public_orders_confirm_path
-    elsif params[:address_option] == "2"
+    elsif params[:order][:address_option] == "2"
       order = Order.new(new_add_params)
       order.customer_id = current_customer.id
-      redirect_to public_orders_confirm_path
     end
   end
 
@@ -41,9 +39,9 @@ class Public::OrdersController < ApplicationController
     params.require(:order).permit(:payment_method)
   end
 
-  # def another_order_params
-  #   params.require(:order).permit(:payment_method, :address, :postal_code, :name)
-  # end
+  def another_order_params
+    params.require(:order).permit(:payment_method, :address, :postal_code, :name)
+  end
 
 
   def new_add_params
