@@ -12,18 +12,15 @@ class Public::OrdersController < ApplicationController
     if params[:address_option] == "0"
       order = Order.new(order_params)
       order.customer_id = current_customer.id
-      order.save
-      redirect_to public_orders_confirm_path
+      redirect_to public_items_path
     elsif params[:address_option] == "1"
       order = Order.new(another_order_params)
       binding.pry
       order.customer_id = current_customer.id
-      order.save
       redirect_to public_orders_confirm_path
     elsif params[:address_option] == "2"
       order = Order.new(new_add_params)
       order.customer_id = current_customer.id
-      order.save
       redirect_to public_orders_confirm_path
     end
   end
@@ -41,12 +38,12 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:payment_method, :shipping_cost)
+    params.require(:order).permit(:payment_method)
   end
 
-  def another_order_params
-    params.require(:order).permit(:payment_method, :address, :postal_code, :name)
-  end
+  # def another_order_params
+  #   params.require(:order).permit(:payment_method, :address, :postal_code, :name)
+  # end
 
 
   def new_add_params
