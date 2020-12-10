@@ -1,15 +1,16 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  # protect_from_forgery with: :null_session
+
 
   def after_sign_in_path_for(resource)
       public_customer_path(resource)
   end
   # サインイン後の挙動はprotected の上に書く
   # 引数はresource
-  
-  protect_from_forgery with: :exception
 
-  helper_method :current_cart
+  # protect_from_forgery with: :exception
+  # helper_method :current_cart
 
   protected
 
@@ -21,6 +22,6 @@ class ApplicationController < ActionController::Base
     def after_sign_out_path_for(resource)
     '/' # サインアウト後のリダイレクト先URL
     end
-    
-    
+
+
 end
