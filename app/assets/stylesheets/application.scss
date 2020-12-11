@@ -16,66 +16,27 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/*まずはお決まりのボックスサイズ算出をborer-boxに */
-*,
-*:before,
-*:after {
-  -webkit-box-sizing: inherit;
-  box-sizing: inherit;
+header {
+  padding: 20px 0;
 }
 
-html {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  font-size: 62.5%;/*rem算出をしやすくするために*/
+.navbar-text{
+  padding-right: 30px;
 }
 
-.btn,
-a.btn,
-button.btn {
-  font-size: 1.6rem;
-  font-weight: 700;
-  line-height: 1.5;
-  position: relative;
+.nav-button{
+  padding-right: 30px;
+  border: 10px, solid;
+  border-color: white;
+}
+
+.navbar-left{
+  padding-left: 30px;
+  font-size: 40px
+}
+
+h2{
+  background-color: #cccccc;
   display: inline-block;
-  padding: 1rem 4rem;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  text-align: center;
-  vertical-align: middle;
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  color: #212529;
-  border-radius: 0.5rem;
-}
-
-a.btn--circle {
-  width: 60px;
-  height: 60px;
-  padding: 0;
-  background: #fff;
-  border-radius: 50%;
-  -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
-  float: right;
-}
-
-a.btn--circle i {
-  font-size: 150%;
-  line-height: 60px;
-  -webkit-transition: all .3s;
-  transition: all .3s;
-  letter-spacing: 0;
-}
-a.btn--circle:hover i {
-  line-height: 55px;
-}
-
-.pb20{
-  padding-bottom: 20px;
+  margin-bottom: 30px;
 }
