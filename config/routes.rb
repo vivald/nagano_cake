@@ -14,10 +14,11 @@ Rails.application.routes.draw do
     get 'homes/top' => 'homes#top'
   end
   namespace :public do
+    post 'orders/confirm' => 'orders#confirm'
+    get 'orders/complete' => 'orders#complete'
     resources :customers, only:[:show, :edit, :update]
     resources :addresses, only:[:index, :edit, :update, :destroy]
-    resources :orders, only:[:new, :index, :show, :update]
-    post 'orders/confirm' => 'orders#confirm'
+    resources :orders, only:[:new, :index, :show, :create]
     resources :items, only:[:index, :show]
     resources :cart_items do
       collection do

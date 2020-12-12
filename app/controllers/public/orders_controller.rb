@@ -9,21 +9,40 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @customer = current_customer
+    @cart_items = @customer.cart_items.all
+    @add_tax = 1.1
+    if params[:order][:payment_method] == "クレジットカード"
+      @payment_method = "クレジットカード"
+    elsif params[:order][:payment_method] == "銀行振込"
+      @payment_method = "銀行振込"
+    end
     if params[:order][:address_option] == "0"
-      order = Order.new(order_params)
-      order.customer_id = current_customer.id
-      @cart_items = @customer.cart_items.all
-      @add_tax = 1.1
+      @postal_code = (@customer.postal_code)
+      @delivery_address = @customer.address
+      @full_name = (@current_customer.last_name + @current_customer.first_name)
     elsif params[:order][:address_option] == "1"
-      order = Order.new(another_order_params)
-      order.customer_id = current_customer.id
+      find_another_address_id = Address.find(params[:order][:another_address])
+      @postal_code = find_another_address_id.postal_code
+      @delivery_address = find_another_address_id.address
+      @full_name = find_another_address_id.name
     elsif params[:order][:address_option] == "2"
-      order = Order.new(new_add_params)
-      order.customer_id = current_customer.id
+      order = Order.new(new_add_address_params)
+      order.save
+      @postal_code = order.postal_code
+      @delivery_address = order.address
+      @full_name = order.name
+      render :confirm
     end
   end
 
+  def create
+    @order = Order.new(complete_params)
+    @order.save
+    redirect_to public_orders_complete_path
+  end
+
   def complete
+    @customer = current_customer
   end
 
   def index
@@ -35,17 +54,13 @@ class Public::OrdersController < ApplicationController
   end
 
   private
-  def order_params
-    params.require(:order).permit(:payment_method)
-  end
 
-  def another_order_params
+  def new_add_address_params
     params.require(:order).permit(:payment_method, :address, :postal_code, :name)
   end
 
-
-  def new_add_params
-    params.require(:order).permit(:payment_method, :address, :postal_code, :name)
+  def complete_params
+    params.permit(:customer_id, :payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment, :status)
   end
 
 end

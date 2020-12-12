@@ -4,9 +4,9 @@
     <title>ECサイト</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag　'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag　'application', media: 'all' %>
     <!--%= stylesheet_link_tag params[:controller], media: 'all', 'data-turbolinks-track': 'reload' unless devise_controller? %>-->
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body class="admin<%= controller.controller_name %> public<%= controller.controller_name %>">
