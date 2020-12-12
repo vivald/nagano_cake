@@ -8,7 +8,7 @@ class Public::CartItemsController < ApplicationController
     @cart_items = CartItem.all
     # @sum_price = CartItem.sum_price
     @customer = current_customer
-    @addTax = 1.10.round(1)
+    @add_tax = 1.10.round(1)
   end
 
   def create

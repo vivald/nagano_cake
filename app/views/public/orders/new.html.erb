@@ -8,7 +8,7 @@
       <%= form_with model:@order, url: public_orders_confirm_path, local:true do |f| %>
         <h3>支払い方法</h3>
         <div>
-          <%= f.radio_button :payment_method, :"クレジットカード", checked: "checked" %>
+          <%= f.radio_button :payment_method, :"クレジットカード", checked: true %>
           <%= f.label :payment_method, 'クレジットカード' %>
         </div>
         <div>
@@ -16,12 +16,12 @@
           <%= f.label :payment_method, '銀行振込' %>
         </div>
         <h3>お届け先</h3>
-        <div><%= f.radio_button :address_option, 0 %>ご自身の住所</div>
+        <div><%= f.radio_button :address_option, 0 , checked: true%>ご自身の住所</div>
         <div>〒<%= @customer.postal_code %> <%= @customer.address %></div>
         <div><%= @customer.last_name + @customer.first_name %></div>
         <br>
         <div><%= f.radio_button :address_option, 1 %>登録済み住所から選択</div>
-        <div><%= f.select :address, Address.all.map { |address| ["〒" + address.postal_code + "   " + address.address + "   " + address.name] } %></div>
+        <div><%= f.select :another_address, Address.all.map { |address| [("〒" + address.postal_code + "   " + address.address + "   " + address.name), address.id] } %></div>
         <br>
         <div><%= f.radio_button :address_option, 2 %>新しいお届け先</div>
         <br>
