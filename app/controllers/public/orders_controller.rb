@@ -11,6 +11,8 @@ class Public::OrdersController < ApplicationController
     @customer = current_customer
     @cart_items = @customer.cart_items.all
     @add_tax = 1.1
+    @order = Order.new
+    @order.order_details.build
     if params[:order][:payment_method] == "クレジットカード"
       @payment_method = "クレジットカード"
     elsif params[:order][:payment_method] == "銀行振込"
@@ -47,6 +49,7 @@ class Public::OrdersController < ApplicationController
 
   def index
     @customer = current_customer
+    @orders = @customer.orders
   end
 
   def show
@@ -60,7 +63,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def complete_params
-    params.permit(:customer_id, :payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment, :status)
+    params.require(:order).permit(:customer_id, :payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment, :status, order_details_attributes: [:order_id, :item_id, :price, :amount])
   end
 
 end
