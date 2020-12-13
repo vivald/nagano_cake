@@ -73,13 +73,13 @@
             <%= f.hidden_field :shipping_cost, value: 800 %>
             <%= f.hidden_field :total_payment, value: (sum + 800).to_i %>
             <%= f.hidden_field :status, value: 0 %>
-            <%= f.fields_for :order_details do |order_detail| %>
-              <% @cart_items.each do |cart_item| %>
+            <% @cart_items.each do |cart_item| %>
+              <%= f.fields_for :order_details do |order_detail| %>
                 <%= order_detail.hidden_field :order_id, value: cart_item.id %>
                 <%= order_detail.hidden_field :item_id, value: cart_item.item.id %>
                 <%= order_detail.hidden_field :amount, value: cart_item.amount %>
+                <%= order_detail.hidden_field :price, value: (sum + 800).to_i %>
               <% end %>
-              <%= order_detail.hidden_field :price, value: (sum + 800).to_i %>
             <% end %>
             <%= f.submit "注文を確定する" %>
           <% end %>

@@ -13,46 +13,18 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-  @cart_item = current_customer.cart_items.build(create_item_params)
-  @cart_items = current_customer.cart_items.all
-  @cart_items.each do |cart_item|
-    if cart_item.item_id == @cart_item.item_id
-      new_amount = cart_item.amount + @cart_item.amount
-      cart_item.update_attribute(:amount, new_amount)
-      @cart_item.delete
+    @cart_item = current_customer.cart_items.build(create_item_params)
+    @cart_items = current_customer.cart_items.all
+    @cart_items.each do |cart_item|
+      if cart_item.item_id == @cart_item.item_id
+        new_amount = cart_item.amount + @cart_item.amount
+        cart_item.update_attribute(:amount, new_amount)
+        @cart_item.delete
+      end
     end
+    @cart_item.save
+    redirect_to public_cart_items_path
   end
-  @cart_item.save
-  redirect_to public_cart_items_path
-
-    # cart_items = CartItem.new(createItemParams)
-    # cart_items.customer_id = current_customer.id
-    # cart_items.save
-    # redirect_to public_cart_items_path
-  end
-  # def index
-  #   @customer = current_customer
-  #   @cart_items = @customer.cart_items
-  # end
-
-  # def create
-  # #   if @cart_items.blank?
-  # #     @cart_items = current_customer.cart_items.build(item_id: params[:item_id])
-  # #   end
-
-  #   @cart_items = CartItem.new(cartItem_params)
-  #   @cart_items.save
-  #   redirect_to public_cart_items_path
-  #   # @cartItem = CartItem.new(cartItem_params)
-  #   # if @cartItem.save
-  #   #   flash[:notice] = "successfully added!"
-  #   #   redirect_to public_cart_items_path
-  #   # else
-  #   #   @customer = current_customer
-  #   #   render :index
-  #   # end
-  # end
-
   def update
     @cart_items = CartItem.find(params[:id])
     @cart_items.update(cartItem_params)

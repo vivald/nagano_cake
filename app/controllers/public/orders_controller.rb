@@ -39,7 +39,6 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(complete_params)
-    @cart_items = CartItem.new
     @order.save
     redirect_to public_orders_complete_path
   end
