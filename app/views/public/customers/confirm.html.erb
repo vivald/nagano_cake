@@ -44,7 +44,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-offset-3 col-xs-5">
+    <div class="col-xs-offset-3 col-xs-6">
       <h3>本当に退会しますか？</h3>
       <p>退会すると、会員登録情報や<br>
         これまでの購⼊履歴が閲覧できなくなります。<br>
@@ -53,8 +53,8 @@
     </div>
     <div class="col-xs-offset-4 col-xs-4">
       <div>
-        <%= link_to "退会しない", public_customer_path(@customer), {class: "back-btn"} %>
-        <%= link_to "退会する", {action: 'update_leave', method: :patch, params: {is_deleted: true}, class: "confirm-btn"}%>
+        <%= link_to "退会しない", public_customers_path, {class: "back-btn"} %>
+        <%= link_to "退会する", public_customers_confirm_path, method: :patch, class: "confirm-btn"%>
       </div>
     </div>
   </div>

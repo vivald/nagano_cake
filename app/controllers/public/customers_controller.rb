@@ -26,9 +26,7 @@ class Public::CustomersController < ApplicationController
 
   def update_leave
     @customer = current_customer
-    if @customer.update(leave_params)
-      binding.pry
-       flash[:notice]= "successfully Updated"
+    if @customer.update(is_deleted: true)
        redirect_to root_path
     else
       render :confirm
@@ -38,9 +36,5 @@ class Public::CustomersController < ApplicationController
   private
   def update_params
     params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number)
-  end
-
-  def leave_params
-    params.require(:customer).permit(:is_deleted)
   end
 end
