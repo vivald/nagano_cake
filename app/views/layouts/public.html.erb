@@ -17,7 +17,7 @@
     
     <% if customer_signed_in? %>
     			<div class ="navbar-text navbar-right">
-    			  <%= link_to('マイページ', public_customer_path(@customer),  {class: "navbar-link glyphicon glyphicon-home"}) %>
+    			  <%= link_to('マイページ', public_customers_path,  {class: "navbar-link glyphicon glyphicon-home"}) %>
     			  <%= link_to('商品一覧', public_items_path,  {class: "navbar-link　glyphicon glyphicon-user"}) %>
     			  <%= link_to('カート', public_cart_items_path,  {class: "navbar-link　glyphicon glyphicon-book"}) %>
     			  <%= link_to('ログアウト', destroy_customer_session_path,  {method: :delete, class: "navbar-link glyphicon glyphicon-share"}) %>

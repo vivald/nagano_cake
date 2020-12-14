@@ -1,0 +1,61 @@
+<style>
+  h3, p {
+    text-align: center;
+    margin-top: 100px;
+  }
+
+  p{
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+
+  .back-btn {
+  display       : inline-block;
+  border-radius : 5%;
+  font-size     : 11pt
+  text-align    : center;
+  cursor        : pointer;
+  padding       : 12px 21px;
+  background    : #007fff;
+  color         : #ffffff;
+  line-height   : 1em;
+  transition    : .3s;
+  border        : 2px solid #007fff;
+  text-align    : center;
+}
+
+ .confirm-btn{
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 11pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 21px;   /* 余白       */
+  background    : #ff0000;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #ff0000;    /* 枠の指定 */
+ }
+</style>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-offset-3 col-xs-5">
+      <h3>本当に退会しますか？</h3>
+      <p>退会すると、会員登録情報や<br>
+        これまでの購⼊履歴が閲覧できなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。
+      </p>
+    </div>
+    <div class="col-xs-offset-4 col-xs-4">
+      <div>
+        <%= link_to "退会しない", public_customer_path(@customer), {class: "back-btn"} %>
+        <%= link_to "退会する", {action: 'update_leave', method: :patch, params: {is_deleted: true}, class: "confirm-btn"}%>
+      </div>
+    </div>
+  </div>
+</div

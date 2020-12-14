@@ -1,10 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <h2><%= @customer.last_name + @customer.first_name %> さんの会員詳細</h2>
+      <h2>会員情報編集</h2>
       <br>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <!--%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>-->
+      <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
         <table class="table">
         	<tbody>
