@@ -11,6 +11,13 @@ class Public::CustomersController < ApplicationController
 
 
   def update
+    @customer = current_customer
+    if @customer.update(update_params)
+      flash[:notice] = "編集に成功しました"
+      redirect_to public_customers_path
+    else
+      render :edit
+    end
   end
 
   def confirm
@@ -29,8 +36,8 @@ class Public::CustomersController < ApplicationController
   end
 
   private
-  def customer_params
-    params.permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :password, :password_confirmation)
+  def update_params
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number)
   end
 
   def leave_params

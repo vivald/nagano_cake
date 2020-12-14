@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     patch 'customers/confirm' => 'customers#update_leave'
     get 'customers' => 'customers#show'
     get 'customers/edit' => 'customers#edit'
-    patch 'customers' => 'customer#update'
+    patch 'customers' => 'customers#update'
     resources :addresses, only:[:index, :edit, :update, :destroy]
     resources :orders, only:[:new, :index, :show, :create]
     resources :items, only:[:index, :show]
