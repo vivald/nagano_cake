@@ -16,7 +16,11 @@ Rails.application.routes.draw do
   namespace :public do
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/complete' => 'orders#complete'
-    resources :customers, only:[:show, :edit, :update]
+    get 'customers/confirm' => 'customers#confirm'
+    patch 'customers/confirm' => 'customers#update_leave'
+    get 'customers' => 'customers#show'
+    get 'customers/edit' => 'customers#edit'
+    patch 'customers' => 'customer#update'
     resources :addresses, only:[:index, :edit, :update, :destroy]
     resources :orders, only:[:new, :index, :show, :create]
     resources :items, only:[:index, :show]
@@ -24,10 +28,7 @@ Rails.application.routes.draw do
       collection do
         delete 'destroy_all'
       end
-  end
-    # post '/add_item' => 'carts#add_item'
-    # post '/update_item' => 'carts#update_item'
-    # delete '/delete_item' => 'carts#delete_item'
+      end
   end
 
   devise_for :admin, controllers: {
