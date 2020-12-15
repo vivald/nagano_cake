@@ -1,4 +1,5 @@
 class Public::OrderDetailsController < ApplicationController
+  before_action :authenticate_customer!
   layout 'public'
 
   def index

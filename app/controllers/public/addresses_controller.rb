@@ -1,5 +1,6 @@
 class Public::AddressesController < ApplicationController
-layout 'public'
+  before_action :authenticate_customer!
+  layout 'public'
 
   def index
     @customer = current_customer

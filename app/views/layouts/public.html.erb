@@ -9,14 +9,16 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-inverse">
-      <div class="container container-fluid">
+    <header>
+      <div class="container">
         <div class="navbar-left">
-    		  Logo
-    		</div>
-    
-    <% if customer_signed_in? %>
-    			<div class ="navbar-text navbar-right">
+          <%= link_to public_homes_top_path do %>
+            Logo
+          <% end %>
+      	</div>
+
+        <% if customer_signed_in? %>
+    			<div class ="">
     			  <%= link_to('マイページ', public_customers_path,  {class: "navbar-link glyphicon glyphicon-home"}) %>
     			  <%= link_to('商品一覧', public_items_path,  {class: "navbar-link　glyphicon glyphicon-user"}) %>
     			  <%= link_to('カート', public_cart_items_path,  {class: "navbar-link　glyphicon glyphicon-book"}) %>
@@ -24,14 +26,14 @@
       		</div>
       	<% else %>
     		  <div class ="navbar-text navbar-right">
-    		    <%= link_to('About', root_path, {class: "navbar-link glyphico glyphicon-home"}) %>
+    		    <%= link_to('About', public_homes_about_path, {class: "navbar-link glyphico glyphicon-home"}) %>
     			  <%= link_to('商品一覧', public_items_path, {class: "navbar-link glyphicon glyphicon-link"}) %>
     			  <%= link_to('新規登録', new_customer_registration_path, {class: "navbar-link glyphicon glyphicon-edit"}) %>
     			  <%= link_to('ログイン', new_customer_session_path, {class: "navbar-link glyphicon glyphicon-share" }) %>
     			</div>
     		<% end %>
       </div>
-    </nav>
+    </header>
 
 
     <%= yield %>
