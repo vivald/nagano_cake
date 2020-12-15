@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
+
+  root to: 'public/homes#top'
+
   namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
+    get 'homes/top'
+    get 'homes/about'
   end
-  root to: 'admin/homes#top'
 
   namespace :admin do
     resources :customers, only:[:index, :show, :edit, :update]
