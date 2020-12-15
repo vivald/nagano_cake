@@ -1,3 +1,14 @@
+<style>
+	.deleted-false{
+		color: #009900;
+	}
+
+	.deleted-true{
+		color: #AAAAAA;
+	}
+</style>
+
+
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
@@ -21,17 +32,18 @@
 			  			  <% end %>
 			  			</td>
 			  			<td><%= customer.email %></td>
-			  			<td>
 			  				<% if customer.is_deleted == false %>
-			  					有効
+			  					<td class = "deleted-false">有効</td>
 			  				<% elsif customer.is_deleted == true %>
-			  					退会
+			  					<td class = "deleted-true">退会</td>
 			  				<% end %>
-			  			</td>
 			  		</tr>
 					<% end %>
 				</tbody>
 			</table>
 		</div>
+		<div class="col-xs-offset-5 col-xs-4">
+    	<div><%= paginate @customers %></div>
+  	</div>
 	</div>
 </div>

@@ -4,43 +4,40 @@
     <title>ECサイト</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <nav class="navbar navbar-inverse">
+    <header>
       <div class="container container-fluid">
         <div class="navbar-left">
-    		  Logo
-    		</div>
+          <%= link_to public_homes_top_path do %>
+            Logo
+          <% end %>
+           </div>
         <% if admin_signed_in? %>
-    			<div class ="">
-    			  <%= link_to('商品一覧', admin_items_path,  {class: "navbar-link glyphicon glyphicon-home"}) %>
-    			  <%= link_to('会員一覧', admin_customers_path,  {class: "navbar-link glyphicon glyphicon-user"}) %>
-    			  <%= link_to('注文履歴一覧', admin_orders_path,  {class: "navbar-link glyphicon glyphicon-book"}) %>
-    			  <%= link_to('ジャンル一覧', admin_genres_path,  {class: "navbar-link glyphicon glyphicon-book"}) %>
-    			  <%= link_to('ログアウト', destroy_admin_session_path,  {method: :delete, class: "navbar-link　glyphicon glyphicon-share"}) %>
-      		</div>
-      	<% else %>
-    		  <div class ="navbar-text navbar-right">
-    		    <%= link_to('About', root_path, {class: "nav-button"}) %>
-    			  <%= link_to('商品一覧', admin_items_path, {class: "nav-button"}) %>
-    			  <%= link_to('新規登録', new_admin_registration_path, {class: "nav-button"}) %>
-    			  <%= link_to('ログイン', new_admin_session_path, {class: "nav-button" }) %>
-    			</div>
-    		<% end %>
+          <div class ="navbar-text navbar-right">
+            <%= link_to('商品一覧', admin_items_path,  {class: "nav-b"}) %>
+            <%= link_to('会員一覧', admin_customers_path,  {class: "nav-b"}) %>
+            <%= link_to('注文履歴一覧', admin_orders_path,  {class: "nav-b"}) %>
+            <%= link_to('ジャンル一覧', admin_genres_path,  {class: "nav-b"}) %>
+            <%= link_to('ログアウト', destroy_admin_session_path,  {method: :delete, class: "logout-b"}) %>
+          </div>
+        <% else %>
+          <div class ="navbar-text navbar-right">
+            <%= link_to('About', root_path, {class: "nav-button"}) %>
+            <%= link_to('商品一覧', admin_items_path, {class: "nav-button"}) %>
+            <%= link_to('新規登録', new_admin_registration_path, {class: "nav-button"}) %>
+            <%= link_to('ログイン', new_admin_session_path, {class: "nav-button" }) %>
+          </div>
+        <% end %>
       </div>
-    </nav>
-    
-   
-
+    </header>
     <%= yield %>
 
 
       <footer>
-
       </footer>
-
   </body>
 </html>

@@ -1,34 +1,78 @@
 <style>
+  span{
+    display: inline-block;
+    margin-right: 50px;
+    margin-bottom: 50px;
+  }
 
+  .create-genre{
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 15pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  background    : #00b300;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  box-shadow    : 5px 5px 7px #666666;  /* 影の設定 */
+  border        : 2px solid #00b300;    /* 枠の指定 */
+}
+.create-genre:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  color         : #00b300;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+}
+
+.edit-genre {
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 9pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  background    : #00b300;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  box-shadow    : 5px 5px 7px #666666;  /* 影の設定 */
+  border        : 2px solid #00b300;    /* 枠の指定 */
+}
+.edit-genre:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  color         : #00b300;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+}
 </style>
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-10">
       <h2>ジャンル一覧・追加</h2>
+    </div>
+    <div class="col-xs-offset-0 col-xs-5">
       <%= form_with url: admin_genres_path, local:true do |f| %>
-
-        <p>
-          <span>ジャンル名</span>
-          <span><%= f.text_field :name %></span>
-          <%= f.submit "新規登録" %>
-        </p>
+        <span>ジャンル名</span>
+        <span><%= f.text_field :name %></span>
+        <%= f.submit "新規登録", class: "create-genre" %>
       <% end %>
-      <table class="table">
-      	<thead>
+    <table class="table">
+    	<thead>
+    		<tr class="active">
+    			<th>ジャンル</th>
+    			<th></th>
+    		</tr>
+    	</thead>
+    	<% @genres.each do |genre| %>
+      	<tbody>
       		<tr>
-      			<th class="active">ジャンル</th>
+      			<th><%= genre.name %></th>
+      			<td><%= link_to "編集する", edit_admin_genre_path(genre), class: "edit-genre" %></td>
       		</tr>
-      	</thead>
-      	<% @genres.each do |genre| %>
-        	<tbody>
-        		<tr>
-        			<th><%= genre.name %></th>
-        			<td><%= link_to "編集する", edit_admin_genre_path(genre) %></td>
-        		</tr>
-        	</tbody>
-        <% end %>
-      </table>
+      	</tbody>
+      <% end %>
+    </table>
     </div>
   </div>
 </div>

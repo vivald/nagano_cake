@@ -3,9 +3,7 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :null_session
 
 
-  def after_sign_in_path_for(resource)
-      public_customers_path(resource)
-  end
+  
   # サインイン後の挙動はprotected の上に書く
   # 引数はresource
 
