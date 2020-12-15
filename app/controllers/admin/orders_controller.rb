@@ -1,10 +1,9 @@
 class Admin::OrdersController < ApplicationController
-  before_action :authenticate_customer!
-  layout 'admins'
+  before_action :authenticate_admin!
+  layout 'admin'
 
   def index
-    @orders = Order.all
-    @orderAmount = Order.count
+    @orders = Order.page(params[:page])
   end
 
   def edit

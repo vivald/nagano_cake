@@ -31,7 +31,8 @@ Rails.application.routes.draw do
   end
 
   devise_for :admin, controllers: {
-  sessions: 'admin/sessions'
+  sessions: 'admin/sessions',
+  registrations: 'admin/registrations'
 }
 
   devise_for :customers, controllers: {

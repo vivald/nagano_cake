@@ -14,13 +14,24 @@
       	<% @orders.each do |order| %>
         	<tbody>
         		<tr>
-        			<td><%= order.created_at %></td>
+        		  <td>
+        		    <%= link_to edit_admin_order_path(order) do %>
+          			  <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          			<% end %>
+        		  </td>
         			<td><%= order.customer.last_name + order.customer.first_name %></td>
-        			<td><%= @orderAmount.customer %></td>
-        			<td><%= order.status %></td>
+        			<td>
+        			  <% sum = 0 %>
+        			  <% order.order_details.each do |order_detail| %>
+          			  <% sum += (order_detail.amount) %>
+          			<% end %>
+          			<%= sum %>
+        			</td>
+        			<td>未実装</td>
         	</tbody>
       	<% end %>
       </table>
+      <%= paginate @orders %>
     </div>
   </div>
 </div>
