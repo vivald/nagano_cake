@@ -3,11 +3,6 @@ Rails.application.routes.draw do
 
   root to: 'public/homes#top'
 
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
-
   namespace :admin do
     resources :customers, only:[:index, :show, :edit, :update]
     resources :items
@@ -16,6 +11,8 @@ Rails.application.routes.draw do
     get 'homes/top' => 'homes#top'
   end
   namespace :public do
+    get 'homes/top'
+    get 'homes/about'
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/complete' => 'orders#complete'
     get 'customers/confirm' => 'customers#confirm'
