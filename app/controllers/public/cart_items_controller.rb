@@ -24,43 +24,17 @@ class Public::CartItemsController < ApplicationController
       end
     end
     @cart_item.save
-    # cart_items = CartItem.new(createItemParams)
-    # cart_items.customer_id = current_customer.id
-    # cart_items.save
     redirect_to public_cart_items_path
   end
-  # def index
-  #   @customer = current_customer
-  #   @cart_items = @customer.cart_items
-  # end
-
-  # def create
-  # #   if @cart_items.blank?
-  # #     @cart_items = current_customer.cart_items.build(item_id: params[:item_id])
-  # #   end
-
-  #   @cart_items = CartItem.new(cartItem_params)
-  #   @cart_items.save
-  #   redirect_to public_cart_items_path
-  #   # @cartItem = CartItem.new(cartItem_params)
-  #   # if @cartItem.save
-  #   #   flash[:notice] = "successfully added!"
-  #   #   redirect_to public_cart_items_path
-  #   # else
-  #   #   @customer = current_customer
-  #   #   render :index
-  #   # end
-  # end
-
   def update
-    @cart_items = CartItem.find(params[:id])
-    @cart_items.update(cart_item_params)
+    cart_item = CartItem.find(params[:id])
+    cart_item.update(cart_item_params)
     redirect_to public_cart_items_path
   end
 
   def destroy
-    cart_items = CartItem.find(params[:id])
-    cart_items.destroy
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
     redirect_to public_cart_items_path
   end
 
