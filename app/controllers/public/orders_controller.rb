@@ -34,13 +34,13 @@ class Public::OrdersController < ApplicationController
       @postal_code = order.postal_code
       @delivery_address = order.address
       @full_name = order.name
-      render :confirm
     end
   end
 
   def create
     @order = Order.new(complete_params)
     @order.save
+    
     redirect_to public_orders_complete_path
   end
 
