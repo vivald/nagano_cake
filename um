@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/ec2-user/environment/nagano_cake/app/views/admin/orders/edit.html.erb:94 ActionView::CompiledTemplates#_app_views_admin_orders_edit_html_erb__1071145336154545017_69896970672260:
+
+    [1;34m89[0m:             <% end %>
+    [1;34m90[0m:             <% amountSum = 0 %>
+    [1;34m91[0m:             <% @order_details.each do |order_detail| %>
+    [1;34m92[0m:               <% amountSum += (order_detail.amount) %>
+    [1;34m93[0m:               <% binding.pry %>
+ => [1;34m94[0m:             <% end %>
+    [1;34m95[0m:             <td><%= (((sum) * @add_tax) * (amountSum)).floor.to_s(:delimited, delimiter: ',') %></td>
+    [1;34m96[0m:           </tr>
+    [1;34m97[0m:           <tr>
+    [1;34m98[0m:             <td>送料</td>
+    [1;34m99[0m:             <td><%= @order.shipping_cost %></td>
+
