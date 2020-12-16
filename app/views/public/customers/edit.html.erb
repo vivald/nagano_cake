@@ -5,12 +5,13 @@
   font-size     : 12pt;
   text-align    : center;
   cursor        : pointer;
-  padding       : 12px 12px;
+  padding       : 12px 20px;
   background    : #00b300;
   color         : #ffffff;
   line-height   : 1em;
   transition    : .3s;
   border        : 2px solid #00b300;
+  margin-right  : 80px;
 }
 
 .leave-btn{
@@ -80,8 +81,10 @@
         		<tr>
         		  <td></td>
         		  <td></td>
-        		  <td><%= f.submit "編集内容を保存", class: "edit-btn" %></td>
-        		  <td><%= link_to "退会する", public_customers_confirm_path, {class: "leave-btn"}%></td>
+        		  <td>
+        		    <%= f.submit "編集内容を保存", class: "edit-btn" %>
+        		    <%= link_to "退会する", public_customers_confirm_path, {class: "leave-btn"}%>
+        		  </td>
         		  <td><td>
         		</tr>
         	</tbody>

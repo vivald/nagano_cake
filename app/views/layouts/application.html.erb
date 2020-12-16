@@ -1,41 +1,124 @@
+<style>
+header{
+  margin-bottom: 20px;
+}
+.common-nav-btn{
+  display       : inline-block;
+  border-radius : 5%;
+  font-size     : 11pt;
+  text-align    : center;
+  cursor        : pointer;
+  padding       : 12px 12px;
+  background    : #00b300;
+  color         : #ffffff;
+  line-height   : 1em;
+  transition    : .3s;
+  box-shadow    : 5px 5px 7px #666666;
+  border        : 2px solid #00b300;
+  margin-left   : 10px;
+}
+
+.common-nav-btn:hover{
+  box-shadow    : none;
+  color         : #00b300;
+  background    : #ffffff;
+}
+
+.logout-btn{
+  display       : inline-block;
+  border-radius : 5%;
+  font-size     : 11pt;
+  text-align    : center;
+  cursor        : pointer;
+  padding       : 12px 12px;
+  background    : #ff0000;
+  color         : #ffffff;
+  line-height   : 1em;
+  transition    : .3s;
+  box-shadow    : 5px 5px 7px #666666;
+  border        : 2px solid #ff0000;
+  margin-left   : 10px;
+}
+
+.logout-btn:hover {
+  box-shadow    : none;
+  color         : #ff0000;
+  background    : #ffffff;
+}
+
+.logo-btn {
+  display: inline-block;           /* 改行なしのブロック要素 */
+  position: relative;              /* 相対位置指定 */
+  width: 300px;                    /* 横幅 */
+  height: 60px;                    /* 高さ */
+  text-align: center;              /* 水平方向は中央揃え */
+  line-height: 56px;               /* 行の高さ */
+}
+.logo-btn span {
+  display: block;                  /* ブロック要素 */
+  position: absolute;              /* 親要素の左上を基準位置 */
+  width: 100%;                     /* 横幅 */
+  height: 100%;                    /* 高さ */
+  border: 2px solid #333;          /* 罫線 */
+  transform-style: preserve-3d;    /* 重なりを3Dで表示 */
+  transition: 0.3s;   /* 変化時間 */
+}
+.logo-btn span:nth-child(1) {
+  background-color: #ffffff;   /* Buttonボタンの色 */
+  color: #000000;          /* Buttonの文字の色 */
+  transform: rotateX(0deg);        /* 横軸の回転なし */
+  transform-origin: 0 50%  -30px;  /* transformの起点 */
+}
+.logo-btn span:nth-child(2) {
+  background-color: #000000;   /* Clickボタンの色 */
+  color: #ffffff;          /* Clickの文字の色 */
+  transform: rotateX(-90deg);      /* 横軸で前方に90度回転 */
+  transform-origin: 0 50%  -30px;  /* transformの起点 */
+}
+.logo-btn:hover span:nth-child(1) {
+  transform: rotateX(90deg);       /* 横軸で90度回転 */
+}
+.logo-btn:hover span:nth-child(2) {
+  transform: rotateX(0deg);        /* 横軸の回転なし */
+}
+</style>
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>ECサイト</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <!--%= stylesheet_link_tag params[:controller], media: 'all', 'data-turbolinks-track': 'reload' unless devise_controller? %>-->
-    <%= javascript_include_tag 'application' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
       <div class="container">
         <div class="navbar-left">
-    		  Logo
-    		</div>
-        <% if admin_signed_in? %>
-    			<div class ="">
-    			  <%= link_to('商品一覧', admin_items_path,  {class: "navbar-link glyphicon glyphicon-home"}) %>
-    			  <%= link_to('会員一覧', admin_customers_path,  {class: "navbar-link glyphicon glyphicon-user"}) %>
-    			  <%= link_to('注文履歴一覧', admin_orders_path,  {class: "navbar-link glyphicon glyphicon-book"}) %>
-    			  <%= link_to('ジャンル一覧', admin_genres_path,  {class: "navbar-link glyphicon glyphicon-book"}) %>
-    			  <%= link_to('ログアウト', destroy_admin_session_path,  {method: :delete, class: "navbar-link　glyphicon glyphicon-share"}) %>
+          <%= link_to public_homes_top_path, class: "logo-btn" do %>
+            <span>ながのCAKE</span><span>Topページへ</span>
+          <% end %>
+      	</div>
+
+        <% if customer_signed_in? %>
+    			<div class ="navbar-text navbar-right">
+    			  <%= link_to('マイページ', public_customers_path,  {class: "common-nav-btn"}) %>
+    			  <%= link_to('商品一覧', public_items_path,  {class: "common-nav-btn"}) %>
+    			  <%= link_to('カート', public_cart_items_path,  {class: "common-nav-btn"}) %>
+    			  <%= link_to('ログアウト', destroy_customer_session_path,  {method: :delete, class: "logout-btn"}) %>
       		</div>
       	<% else %>
     		  <div class ="navbar-text navbar-right">
-    		    <%= link_to('About', public_homes_about_path, {class: "nav-button"}) %>
-    			  <%= link_to('商品一覧', public_items_path, {class: "nav-button"}) %>
-    			  <%= link_to('新規登録', new_admin_registration_path, {class: "nav-button"}) %>
-    			  <%= link_to('ログイン', new_admin_session_path, {class: "nav-button" }) %>
+    		    <%= link_to('About', public_homes_about_path, {class: "common-nav-btn"}) %>
+    			  <%= link_to('商品一覧', public_items_path, {class: "common-nav-btn"}) %>
+    			  <%= link_to('新規登録', new_customer_registration_path, {class: "common-nav-btn"}) %>
+    			  <%= link_to('ログイン', new_customer_session_path, {class: "common-nav-btn" }) %>
     			</div>
     		<% end %>
       </div>
     </header>
-
-
-
 
 
     <%= yield %>

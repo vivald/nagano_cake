@@ -1,6 +1,27 @@
+<style>
+	.edit-btn {
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 13pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 7px 34px;   /* 余白       */
+  background    : #00b300;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #00b300;    /* 枠の指定 */
+}
+.edit-btn:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  color         : #00b300;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+}
+</style>
+
 <div class="container">
   <div class="row">
-    <div class="col-xs-9">
+    <div class="col-xs-10">
       <h2>配送先編集</h2>
       <%= form_with model:@address, url: public_address_path(@address), local:true do |f| %>
 	      <table class="table">
@@ -20,7 +41,7 @@
 						<tr>
 							<td>宛名</td>
 							<td><%= f.text_field :name %></td>
-							<td><%= f.submit "変更を保存" %></td>
+							<td><%= f.submit "変更内容を保存", class: "edit-btn" %></td>
 						</tr>
 					</tbody>
 				</table>

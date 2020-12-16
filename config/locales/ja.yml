@@ -1,14 +1,14 @@
 ja:
   time:
     formats:
-      default: "%Y/%m/%d %H:%M:%S"
+      default: "%Y/%m/%d"
 
 
-ja:
-  activerecord:
-    errors:
-      models:
-        user:
-          attributes:
-            current_password:
-              blank: "が空になっています"
+# ja:
+#   activerecord:
+#     errors:
+#       models:
+#         user:
+#           attributes:
+#             current_password:
+#               blank: "が空になっています"

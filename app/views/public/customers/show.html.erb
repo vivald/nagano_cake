@@ -1,44 +1,103 @@
+<style>
+	span{
+		display: inline-block;
+		font-weight: bold;
+		font-size: 20px;
+		margin-bottom: 30px;
+		margin-right: 30px;
+	}
+
+	p{
+		display: inline-block;
+		font-weight: bold;
+		font-size: 20px;
+		margin-bottom: 30px;
+		margin-right: 30px;
+	}
+	.edit-btn {
+   display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 11pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 36px;   /* 余白       */
+  background    : #00b300;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #00b300;    /* 枠の指定 */
+}
+.edit-btn:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  color         : #00b300;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+}
+
+.order-history-btn {
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 10pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 8px 45px;   /* 余白       */
+  background    : #007fff;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #007fff;    /* 枠の指定 */
+}
+.order-history-btn:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  color         : #007fff;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+}
+</style>
+
+
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12">
+	<div class="row">
+		<div class="col-xs-offset-1 col-xs-12">
             <h2>マイページ</h2>
-            <p>登録情報</p>
-            <%= link_to "編集する", public_customers_edit_path%>
+		</div>
+        <div class="col-xs-offset-2 col-xs-7">
+            <span>登録情報</span>
+            <%= link_to "編集する", public_customers_edit_path, class: "edit-btn" %>
+            <table class="table table-bordered">
+				<thead>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="active">氏名</td>
+						<td><%= @customer.last_name %>  <%= @customer.first_name %></td>
+					</tr>
+					<tr>
+						<td class="active">カナ</td>
+						<td><%= @customer. last_name_kana%>  <%= @customer. first_name_kana%></td>
+					</tr>
+					<tr>
+						<td class="active">郵便番号</td>
+						<td><%= @customer.postal_code %></td>
+					</tr>
+					<tr>
+						<td class="active">住所</td>
+						<td><%= @customer.address %></td>
+					</tr>
+					<tr>
+						<td class="active">電話番号</td>
+						<td><%= @customer.telephone_number %></td>
+					</tr>
+					<tr>
+						<td class="active">メールアドレス</td>
+						<td><%= @customer.email %></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p>配送先（未実装）</p><br>
+			<!--%= link_to "一覧を見る", public_delivery_statuses_path(current_customer.id) %>-->
+			<p>注文履歴</p>
+			<%= link_to "一覧を見る", public_orders_path(current_customer.id), class: "order-history-btn" %>
+
         </div>
     </div>
 </div>
-<table class="table table-bordered">
-	<thead>
-	</thead>
-	<tbody>
-		<tr>
-			<td class="active">氏名</td>
-			<td><%= @customer.last_name %>  <%= @customer.first_name %></td>
-		</tr>
-		<tr>
-			<td class="active">カナ</td>
-			<td><%= @customer. last_name_kana%>  <%= @customer. first_name_kana%></td>
-		</tr>
-		<tr>
-			<td class="active">郵便番号</td>
-			<td><%= @customer.postal_code %></td>
-		</tr>
-		<tr>
-			<td class="active">住所</td>
-			<td><%= @customer.address %></td>
-		</tr>
-		<tr>
-			<td class="active">電話番号</td>
-			<td><%= @customer.telephone_number %></td>
-		</tr>
-		<tr>
-			<td class="active">メールアドレス</td>
-			<td><%= @customer.email %></td>
-		</tr>
-	</tbody>
-</table>
-
-<p>配送先（未実装）</p>
-<!--%= link_to "一覧を見る", public_delivery_statuses_path(current_customer.id) %>-->
-<p>注文履歴</p>
-<%= link_to "一覧を見る", public_orders_path(current_customer.id) %>
