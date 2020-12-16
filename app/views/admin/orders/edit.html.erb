@@ -1,0 +1,116 @@
+<style>
+  .order_detail-table{
+    display: inline-block;
+    width: 80%;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .mr{
+    display: inline-block;
+    margin-right: 60px;
+    margin-bottom: 10px;
+  }
+
+  .payment-information-table{
+    display: inline-block;
+    margin-top: 30%;
+    float: right;
+    font-size: 150%;
+  }
+  
+  .payment-information-th{
+    display: inline-block;
+    margin-right: 15px;
+  }
+
+
+</style>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>注文履歴詳細</h2>
+    </div>
+    <div class="col-xs-12">
+      <table class ="order_detail-table">
+        <tbody>
+          <tr>
+            <th class = "mr">購入者</th>
+            <td class = "mr">
+              <%= link_to admin_customer_path(@order.customer.id) do %>
+                <%= (@order.customer.last_name) + (@order.customer.first_name) %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th class = "mr">注文日</th>
+            <td class = "mr"><%= @order.created_at.strftime('%Y/%M/%D') %></td>
+          </tr>
+          <tr>
+            <th class = "mr">配送先</th>
+            <td class = "mr">
+              〒<%= (@order.postal_code)  + "  " + (@order.address) + "  " + (@order.name) %>
+            </td>
+          </tr>
+          <tr>
+            <th class = "mr">支払い方法</th>
+            <td class = "mr"><%= @order.payment_method %></td>
+          </tr>
+          <tr>
+            <th class = "mr">注文ステータス</th>
+            <td class = "mr">未実装</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xs-8">
+      <table class="table">
+      	<thead>
+      		<tr class ="active">
+      			<th>商品名</th>
+      			<th>単価（税込）</th>
+      			<th>数量</th>
+      			<th>小計</th>
+      			<th>制作ステータス</th>
+      		</tr>
+      	</thead>
+      	<tbody>
+    		  <% @order_details.each do |order_detail| %>
+    		    <tr>
+    		      <td><%= order_detail.item.name %></td>
+        			<td><%= ((order_detail.item.price) * @add_tax).floor %></td>
+        			<td><%= order_detail.amount %></td>
+        			<td><%= (((order_detail.item.price) * (order_detail.amount)) * @add_tax).floor.to_s(:delimited, delimiter: ',') %></td>
+        			<td>未実装</td>
+    		    </tr>
+    			<% end %>
+    		</tr>
+      	</tbody>
+      </table>
+    </div>
+    <div class="col-xs-4">
+      <table class = "payment-information-table">
+        <tbody>
+          <tr>
+            <th class= "payment-information-th">商品合計</th>
+            <% sum = 0 %>
+            <% @order_details.each do |order_detail| %>
+              <% sum += ((order_detail.item.price) * (order_detail.amount)) %>
+            <% end %>
+            <td><%= (sum * @add_tax).floor.to_s(:delimited, delimiter: ',') %>円</td>
+          </tr>
+          <tr>
+            <th class= "payment-information-th">送料</th>
+            <td><%= @order.shipping_cost %>円</td>
+          </tr>
+          <tr>
+            <th class= "payment-information-th">請求金額合計</th>
+            <td><%= ((sum * @add_tax) + (@order.shipping_cost)).floor.to_s(:delimited, delimiter: ',')%>円</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

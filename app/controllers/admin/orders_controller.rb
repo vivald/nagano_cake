@@ -8,6 +8,8 @@ class Admin::OrdersController < ApplicationController
 
   def edit
     @order = Order.find(params[:id])
+    @add_tax = 1.1
+    @order_details = @order.order_details.all
   end
 
   def update
