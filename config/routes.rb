@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get 'customers' => 'customers#show'
     get 'customers/edit' => 'customers#edit'
     patch 'customers' => 'customers#update'
-    resources :addresses, only:[:index, :edit, :update, :destroy]
+    resources :addresses, only:[:index, :edit, :create, :update, :destroy]
     resources :orders, only:[:new, :index, :show, :create]
     resources :items, only:[:index, :show]
     resources :cart_items do

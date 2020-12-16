@@ -1,14 +1,26 @@
+<style>
+  .margin-adjust{
+    display: block;
+    padding-top: 100px;
+  }
+</style>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
       <h1>商品一覧（全<%= @itemAmount %>件）</h1><br>
       <% @items.each do |item| %>
+      <div class="col-xs-3">
         <%= link_to public_item_path(item) do %>
-          <%= attachment_image_tag item, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size:'150x150' %></td><br>
+          <%= attachment_image_tag item, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size:'150x130' %></td><br>
         <% end %>
         <%= item.name %><br>
-        ¥<%= item.price %><br>
+        ¥<%= (item.price).to_s(:delimited, delimiter: ',' ) %><br>
+      </div>
       <% end %>
+    </div>
+    <div class="col-xs-offset-5">
+        <%= paginate @items %>
     </div>
   </div>
 </div>

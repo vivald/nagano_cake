@@ -9,10 +9,9 @@
 }
 
 .all-items-link{
-  float: right;
   display       : inline-block;
-  border-radius : 5%;          /* 角丸       */
-  font-size     : 11pt;        /* 文字サイズ */
+  border-radius : 2%;          /* 角丸       */
+  font-size     : 15pt;        /* 文字サイズ */
   text-align    : center;      /* 文字位置   */
   cursor        : pointer;     /* カーソル   */
   padding       : 12px 12px;   /* 余白       */
@@ -20,7 +19,15 @@
   color         : #ffffff;     /* 文字色     */
   line-height   : 1em;         /* 1行の高さ  */
   transition    : .3s;         /* なめらか変化 */
+  box-shadow    : 5px 5px 7px #666666;  /* 影の設定 */
   border        : 2px solid #00b300;    /* 枠の指定 */
+  float: right;
+}
+
+.all-items-link:hover{
+  box-shadow    : none;
+  color         : #00b300;
+  background    : #ffffff;
 }
 </style>
 
@@ -29,9 +36,9 @@
   <div class="row">
     <div class="col-xs-offset-3 col-xs-8">
       <div style="position: relative; display:inline-block;" class="topimage">
-        <%= image_tag "ケーキ.jpg", width: '65%', height: '80%', class: "topimage"%>
+        <%= image_tag "ケーキ.jpg", width: '69%', height: '40%', class: "topimage"%>
       </div>
-      <div style="position: absolute; top: 0%; left: 0; max-width: 100%; max-height: 100px; padding: 170px 40px; text-align: center; color: white; font-size: 20px">
+      <div style="position: absolute; top: 0%; left: 0; max-width: 100%; max-height: 100px; padding: 120px 40px; text-align: center; color: white; font-size: 20px">
         <p> ようこそ、ながのCAKEへ！<br>
             このサイトは、ケーキ販売のECサイトになります。<br>
             会員でない⽅も商品の閲覧はできますが、<br>
@@ -45,21 +52,33 @@
         <tbody>
           <tr>
             <% @new_items.each do |new_item| %>
-              <td><%= attachment_image_tag new_item, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size:'150x150', class: "items" %></td>
+              <td>
+                <%= link_to public_item_path(new_item) do %>
+                  <%= attachment_image_tag new_item, :image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size:'150x150', class: "items" %>
+                <% end %>
+              </td>
             <% end %>
           <tr>
             <% @new_items.each do |new_item| %>
-              <td><%= new_item.name %></td>
+              <td>
+                <%= link_to public_item_path(new_item) do %>
+                  <%= new_item.name %>
+                <% end %>
+              </td>
             <% end %>
           </tr>
           <tr>
             <% @new_items.each do |new_item| %>
-              <td>¥<%= (new_item.price).to_s(:delimited, delimiter: ',') %></td>
+              <td>
+                <%= link_to public_item_path(new_item) do %>
+                  ¥<%= (new_item.price).to_s(:delimited, delimiter: ',') %>
+                <% end %>
+              </td>
             <% end %>
           </tr>
         </tbody>
       </table>
-        <%= link_to "全ての商品を見る", public_items_path, {class: "all-items-link"} %>
+        <%= link_to "全ての商品を見る>", public_items_path, {class: "all-items-link"} %>
     </div>
   </div>
 </div>
