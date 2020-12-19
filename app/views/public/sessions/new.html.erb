@@ -13,14 +13,14 @@ input[type="password"]{
     background-color: #cccccc;
     margin-bottom: 40px;
   }
-  
+
   .margin-adjust{
     display: inline-block;
     margin-bottom: 30px;
     margin-right: 20px;
     font-size: 20px;
   }
-  
+
   .login-btn{
     display       : inline-block;
     border-radius : 5%;          /* 角丸       */
@@ -39,10 +39,20 @@ input[type="password"]{
     color         : #007fff;     /* 背景色     */
     background    : #ffffff;     /* 文字色     */
 }
+
+ .notice {
+    display: inline;
+    background-color: red;
+    color: white;
+    font-size: 20px;
   }
 </style>
-
 <div class="container">
+  <div class ="notice">
+    <% if flash[:notice] %>
+      <%= flash[:notice] %>
+    <% end %>
+  </div>
   <div class="row">
     <div class="col-xs-12">
       <h2>ログイン</h2><br>
