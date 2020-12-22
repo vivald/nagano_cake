@@ -13,7 +13,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      flash[:notice] ="successfully Created"
+      flash[:notice] = "successfully Created"
       redirect_to admin_item_path(@item.id)
     else
       render :new
@@ -35,7 +35,7 @@ class Admin::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      flash[:notice]= "successfully Updated"
+      flash[:notice] = "successfully Updated"
       redirect_to admin_item_path(@item.id)
     else
       render :edit
@@ -47,6 +47,4 @@ class Admin::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :introduction, :image, :genre_id, :price, :is_active)
   end
-
-
 end

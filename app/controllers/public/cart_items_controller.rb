@@ -1,12 +1,9 @@
 class Public::CartItemsController < ApplicationController
-
   before_action :authenticate_customer!
 
   layout 'public'
 
-
   def index
-
     @customer = current_customer
     @cart_items = @customer.cart_items.all
     @add_tax = 1.10.round(1)
@@ -26,6 +23,7 @@ class Public::CartItemsController < ApplicationController
     @cart_item.save
     redirect_to public_cart_items_path
   end
+
   def update
     cart_item = CartItem.find(params[:id])
     cart_item.update(cart_item_params)
@@ -52,6 +50,4 @@ class Public::CartItemsController < ApplicationController
   def cart_item_params
     params.require(:cart_item).permit(:item_id, :customer_id, :amount)
   end
-
-
 end

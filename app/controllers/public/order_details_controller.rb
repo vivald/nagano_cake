@@ -18,18 +18,12 @@ class Public::OrderDetailsController < ApplicationController
     end
   end
 
-
-
   def edit
   end
 
-
-
-
-
   private
+
   def order_params
     params.permit(:postal_code, :address, :name)
   end
-
 end

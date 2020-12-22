@@ -20,8 +20,6 @@ class Public::AddressesController < ApplicationController
     end
   end
 
-
-
   def edit
     @customer = current_customer
     @address = Address.find(params[:id])
@@ -39,13 +37,9 @@ class Public::AddressesController < ApplicationController
     redirect_to public_addresses_path
   end
 
-
-
-
-
   private
+
   def address_params
     params.require(:address).permit(:postal_code, :address, :name)
   end
-
 end
