@@ -20,7 +20,7 @@ class Public::OrdersController < ApplicationController
       @payment_method = "銀行振込"
     end
     if params[:order][:address_option] == "0"
-      @postal_code = (@customer.postal_code)
+      @postal_code = @customer.postal_code
       @delivery_address = @customer.address
       @full_name = (@current_customer.last_name + @current_customer.first_name)
     elsif params[:order][:address_option] == "1"
@@ -54,10 +54,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-     @customer = current_customer
-     @order = Order.find(params[:id])
-     @order_details = @order.order_details.all
-     @add_tax = 1.1
+    @customer = current_customer
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details.all
+    @add_tax = 1.1
   end
 
   private
@@ -69,5 +69,4 @@ class Public::OrdersController < ApplicationController
   def complete_params
     params.require(:order).permit(:customer_id, :payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment, :status, order_details_attributes: [:order_id, :item_id, :price, :amount])
   end
-
 end
